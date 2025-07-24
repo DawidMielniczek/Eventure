@@ -1,0 +1,59 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Production build output
+dist/
+build/
+out/
+dist-ssr/
+.next/
+
+# Local environment files
+.env
+.env.*.local
+.env.local
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE and editor configs
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Misc
+*.local
+*.tgz
+*.tsbuildinfo
+.cache/
+.nyc_output/
+coverage/
+
+# React Native or Expo specific
+.expo/
+.expo-shared/
+
+# Optional: if using Storybook
+storybook-static/
+
+# Optional: if using Docker
+docker-compose.override.yml
+*.env.docker
+
+# Optional: if using VSCode debugger config
+.vscode/launch.json
