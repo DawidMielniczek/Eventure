@@ -2,13 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 import LoadingIndicator from '../UI/LoadingIndicator.jsx';
 import ErrorBlock from '../UI/ErrorBlock.jsx';
 import EventItem from './EventItem.jsx';
-import { fetchEvents } from '../../util/http.js';
+import { fetchEvents, queryClient } from '../../util/http.js';
 
 export default function NewEventsSection() {
   const { data, isPending, isError, error } = useQuery({
-    queryKey: ['events'],
-    queryFn: fetchEvents,
-    staleTime: 5000
+    queryKey: ['events', {max: 3}],
+    queryFn: ({signal, queryKey}) => fetchEvents({ signal, ...queryKey[1]}),
+    staleTime: 10000
   });
 
 
@@ -44,4 +44,12 @@ export default function NewEventsSection() {
       {content}
     </section>
   );
+}
+
+export function loader(){
+  return queryClient.fetchQuery({
+    queryKey: ['events', {max: 3}],
+    queryFn: ({signal, queryKey}) => fetchEvents({ signal, ...queryKey[1]}), 
+  })
+
 }

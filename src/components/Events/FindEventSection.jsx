@@ -10,13 +10,14 @@ export default function FindEventSection() {
   const searchElement = useRef();
   const [searchTerm, setSearchTerm] = useState();
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['events', { search: searchTerm }],
-    queryFn: ({ signal }) => fetchEvents({ searchTerm }), // tutaj musi byc obiekt aby móc go wydobyć w funkcji gdzie jest jeszcze m.in signal
+    queryKey: ['events', { searchTerm: searchTerm }],
+    queryFn: ({ signal, queryKey }) => fetchEvents({ signal, ...queryKey[1] }), // tutaj musi byc obiekt aby móc go wydobyć w funkcji gdzie jest jeszcze m.in signal
     enabled: searchTerm !== undefined
   })
   function handleSubmit(event) {
     event.preventDefault();
     setSearchTerm(searchElement.current.value);
+    //console.log(searchElement.current.value);
   }
 
   let content = <p>Please enter a search term and to find events.</p>;

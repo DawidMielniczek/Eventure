@@ -1,4 +1,4 @@
-import { Link, Navigate, Outlet, useNavigate } from 'react-router-dom';
+import { Link, Navigate, Outlet, useNavigate, useNavigation } from 'react-router-dom';
 
 import Header from '../Header.jsx';
 import { useParams } from 'react-router-dom';
@@ -15,6 +15,7 @@ export default function EventDetails() {
   const params = useParams();
   const id = params.id;
   const navigate = useNavigate();
+  const nav = useNavigation();
 
   const { data, isPending: isQueryPending, isError } = useQuery({
     queryKey: ['events',  id ],
